@@ -1,12 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 function Pet({ name, animal, breed }) {
-  return React.createElement('div', {}, [
-    React.createElement('h1', { key: 'name' }, name),
-    React.createElement('h2', { key: 'animal' }, animal),
-    React.createElement('h2', { key: 'breed' }, breed),
-  ]);
+  return (
+    <div>
+      <h1>{name}</h1>
+      <h2>{animal}</h2>
+      <h2>{breed}</h2>
+    </div>
+  );
 }
 
 Pet.propTypes = {
