@@ -1,16 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Pet from './Pet';
+import useBreedList from '../hooks/useBreedList';
 
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
-const BREEDS = [];
 
 function SearchParams() {
   const [location, setLocation] = useState('');
   const [animal, setAnimal] = useState('');
   const [breed, setBreed] = useState('');
+  const [pets, setPets] = useState([]);
+  const [breeds] = useBreedList(animal);
+
+  const fetchPets = async () => {
+    const res = await fetch(
+      `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+
+    const data = await res.json();
+    // console.log(data.pets);
+    return data.pets;
+  };
+
+  useEffect(() => {
+    (async () => {
+      const fetchedPets = await fetchPets();
+      setPets(fetchedPets);
+    })();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setPets(await fetchPets());
+  };
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="location">Location:</label>
         <input
           type="text"
@@ -46,19 +72,25 @@ function SearchParams() {
           id="breed"
           value={breed}
           onChange={({ target: { value } }) => setBreed(value)}
-          disabled={BREEDS.length === 0}
+          disabled={breeds.length === 0}
         >
           <option value="">- Select a breed -</option>
 
-          {BREEDS.map((currentBreed) => (
+          {breeds.map((currentBreed) => (
             <option key={currentBreed} value={currentBreed}>
               {currentBreed}
             </option>
           ))}
         </select>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Filter</button>
       </form>
+
+      <section className="pets">
+        {pets.map(({ id, name, animal: animalType, breed: animalBreed }) => (
+          <Pet name={name} animal={animalType} breed={animalBreed} key={id} />
+        ))}
+      </section>
     </div>
   );
 }
