@@ -18,6 +18,7 @@ function PetList({ pets }) {
             images,
           }) => (
             <Pet
+              id={id}
               name={name}
               animal={animalType}
               breed={animalBreed}

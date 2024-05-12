@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import useBreedList from '../hooks/useBreedList';
 import PetList from './PetList';
+import PetForm from './PetForm';
 
-const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
+const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 function SearchParams() {
   const [location, setLocation] = useState('');
@@ -36,55 +37,19 @@ function SearchParams() {
 
   return (
     <section className="search-params">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="location">Location:</label>
-        <input
-          type="text"
-          name="location"
-          id="location"
-          placeholder="Location"
-          value={location}
-          onChange={({ target: { value } }) => setLocation(value)}
+      <section className="form">
+        <PetForm
+          animals={animals}
+          handleSubmit={handleSubmit}
+          location={location}
+          setLocation={setLocation}
+          animal={animal}
+          setAnimal={setAnimal}
+          breed={breed}
+          setBreed={setBreed}
+          breeds={breeds}
         />
-
-        <label htmlFor="animal">Animal:</label>
-        <select
-          name="animal"
-          id="animal"
-          value={animal}
-          onChange={({ target: { value } }) => {
-            setAnimal(value);
-            setBreed('');
-          }}
-        >
-          <option value="">- Select an animal -</option>
-
-          {ANIMALS.map((currentAnimal) => (
-            <option key={currentAnimal} value={currentAnimal}>
-              {currentAnimal}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor="breed">Breed:</label>
-        <select
-          name="breed"
-          id="breed"
-          value={breed}
-          onChange={({ target: { value } }) => setBreed(value)}
-          disabled={breeds.length === 0}
-        >
-          <option value="">- Select a breed -</option>
-
-          {breeds.map((currentBreed) => (
-            <option key={currentBreed} value={currentBreed}>
-              {currentBreed}
-            </option>
-          ))}
-        </select>
-
-        <button type="submit">Filter</button>
-      </form>
+      </section>
 
       <section className="pets">
         <PetList pets={pets} />
