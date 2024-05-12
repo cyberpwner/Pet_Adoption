@@ -35,7 +35,7 @@ function SearchParams() {
   };
 
   return (
-    <div className="search-params">
+    <section className="search-params">
       <form onSubmit={handleSubmit}>
         <label htmlFor="location">Location:</label>
         <input
@@ -87,9 +87,9 @@ function SearchParams() {
       </form>
 
       <section className="pets">
-        <PetList list={pets} />
+        <PetList pets={pets} />
       </section>
-    </div>
+    </section>
   );
 }
 
