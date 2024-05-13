@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useBreedList from '../hooks/useBreedList';
-import PetList from './PetList';
-import PetForm from './PetForm';
+import PetList from '../components/PetList';
+import PetForm from '../components/PetForm';
 
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -18,7 +18,6 @@ function SearchParams() {
     );
 
     const data = await res.json();
-    // console.log(data.pets);
     return data.pets;
   };
 

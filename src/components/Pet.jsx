@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Pet({ id, name, animal, breed, images, location }) {
-  const hero = images[0] || 'http://pets-images.dev-apis.com/pets/none.jpg';
+  let hero = 'http://pets-images.dev-apis.com/pets/none.jpg';
+
+  if (images.length) {
+    [hero] = images;
+  }
 
   return (
-    <a href={`/details/${id}`} className="pet">
+    <Link to={`/details/${id}`} className="pet">
       <section className="image-container">
         <img src={hero} alt={name} />
       </section>
@@ -14,7 +19,7 @@ function Pet({ id, name, animal, breed, images, location }) {
           {animal} - {breed} - {location}
         </h2>
       </section>
-    </a>
+    </Link>
   );
 }
 
