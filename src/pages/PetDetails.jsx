@@ -1,40 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import fetchPet from '../loaders/fetchPet';
 
 function PetDetails() {
-  const [pet, setPet] = useState({});
   const { id } = useParams();
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ['petDetails', id],
+    queryFn: fetchPet,
+  });
 
-  let hero = 'http://pets-images.dev-apis.com/pets/none.jpg';
-
-  if (pet.images) {
-    [hero] = pet.images;
+  if (isPending) {
+    return (
+      <section className="loading-pane">
+        <h2 className="loader">⏳</h2>
+      </section>
+    );
   }
 
-  useEffect(() => {
-    const fetchPet = async (petId) => {
-      const response = await fetch(
-        `https://pets-v2.dev-apis.com/pets?id=${petId}`
-      );
+  if (isError) {
+    return <h2>Error: {error.message}</h2>;
+  }
 
-      const data = await response.json();
-      return data.pets[0];
-    };
+  // if it gets here, we know that data is defined (isSuccess === true)
 
-    (async () => {
-      setPet(await fetchPet(id));
-    })();
-  }, [id, setPet]);
+  const [pet] = data.pets;
 
   return (
-    <section className="pet-details">
-      <section className="image-container">
-        <img src={hero} alt={pet.name} style={{ maxWidth: '100%' }} />
-      </section>
-      <section className="info">
+    <section className="details">
+      <section>
         <h1>{pet.name}</h1>
         <h2>
           {pet.animal} - {pet.breed} - {`${pet.city}, ${pet.state}`}
+          <button type="button">Adopt {pet.name}</button>
+          <p>{pet.description}</p>
         </h2>
       </section>
     </section>
