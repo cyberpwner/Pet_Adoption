@@ -10,7 +10,7 @@ function SearchParams() {
   const [animal, setAnimal] = useState('');
   const [breed, setBreed] = useState('');
   const [pets, setPets] = useState([]);
-  const [breeds] = useBreedList(animal);
+  const { breeds } = useBreedList(animal);
 
   const fetchPets = async () => {
     const res = await fetch(
@@ -46,7 +46,7 @@ function SearchParams() {
           setAnimal={setAnimal}
           breed={breed}
           setBreed={setBreed}
-          breeds={breeds}
+          breeds={breeds ?? []}
         />
       </section>
 

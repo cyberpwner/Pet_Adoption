@@ -48,15 +48,16 @@ function PetForm({
         id="breed"
         value={breed}
         onChange={({ target: { value } }) => setBreed(value)}
-        disabled={breeds.length === 0}
+        disabled={!breeds || breeds?.length === 0}
       >
         <option value="">- Select a breed -</option>
 
-        {breeds.map((currentBreed) => (
-          <option key={currentBreed} value={currentBreed}>
-            {currentBreed}
-          </option>
-        ))}
+        {breeds &&
+          breeds?.map((currentBreed) => (
+            <option key={currentBreed} value={currentBreed}>
+              {currentBreed}
+            </option>
+          ))}
       </select>
 
       <button type="submit">Filter</button>

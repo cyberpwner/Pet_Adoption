@@ -9,6 +9,7 @@ import {
 import './index.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import PetSearch from './pages/PetSearch';
 import RootLayout from './layouts/RootLayout';
 import PetDetails from './pages/PetDetails';
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
