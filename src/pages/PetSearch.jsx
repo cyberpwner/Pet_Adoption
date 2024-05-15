@@ -10,28 +10,43 @@ import ErrorScreen from '../components/ErrorScreen';
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 function SearchParams() {
-  const [location, setLocation] = useState('');
+  const [searchParams, setSearchParams] = useState({
+    location: '',
+    animal: '',
+    breed: '',
+  });
   const [animal, setAnimal] = useState('');
-  const [breed, setBreed] = useState('');
-  // const [pets, setPets] = useState([]);
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ['petList', location, animal, breed],
+    queryKey: ['petList', searchParams],
     queryFn: fetchPetList,
   });
   const { breeds } = useBreedList(animal);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // get the data from the form
+    const formData = new FormData(event.target);
+
+    // convert it into a simple object
+    const inputData = {
+      location: formData.get('location') ?? '',
+      animal: formData.get('animal') ?? '',
+      breed: formData.get('breed') ?? '',
+    };
+
+    // send it to state
+    setSearchParams(inputData);
+  };
 
   return (
     <section className="search-params">
       <section className="form">
         <PetForm
           animals={animals}
-          // handleSubmit={handleSubmit}
-          location={location}
-          setLocation={setLocation}
+          handleSubmit={handleSubmit}
           animal={animal}
           setAnimal={setAnimal}
-          breed={breed}
-          setBreed={setBreed}
           breeds={breeds ?? []}
         />
       </section>
