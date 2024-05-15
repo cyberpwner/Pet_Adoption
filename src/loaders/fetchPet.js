@@ -5,7 +5,7 @@ const fetchPet = async ({ queryKey }) => {
 
   if (!response.ok) {
     throw new Error(
-      `An error occured when trying to fetch pet with the id: ${id}`
+      `An error occurred when trying to fetch pet with the id: ${id}`
     );
   }
 

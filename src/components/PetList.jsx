@@ -4,7 +4,7 @@ import Pet from './Pet';
 function PetList({ pets }) {
   return (
     <section className="search">
-      {!pets.length ? (
+      {!pets || !pets?.length ? (
         <h1>No pets found</h1>
       ) : (
         pets.map(

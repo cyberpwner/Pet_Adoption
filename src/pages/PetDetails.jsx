@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import fetchPet from '../loaders/fetchPet';
+import LoadingScreen from '../components/LoadingScreen';
 
 function PetDetails() {
   const { id } = useParams();
@@ -10,11 +11,7 @@ function PetDetails() {
   });
 
   if (isPending) {
-    return (
-      <section className="loading-pane">
-        <h2 className="loader">⏳</h2>
-      </section>
-    );
+    return <LoadingScreen />;
   }
 
   if (isError) {

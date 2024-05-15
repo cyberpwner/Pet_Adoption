@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import useBreedList from '../hooks/useBreedList';
 import PetList from '../components/PetList';
 import PetForm from '../components/PetForm';
+import fetchPetList from '../loaders/fetchPetList';
+import LoadingScreen from '../components/LoadingScreen';
+import ErrorScreen from '../components/ErrorScreen';
 
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -9,37 +13,19 @@ function SearchParams() {
   const [location, setLocation] = useState('');
   const [animal, setAnimal] = useState('');
   const [breed, setBreed] = useState('');
-  const [pets, setPets] = useState([]);
+  // const [pets, setPets] = useState([]);
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ['petList', location, animal, breed],
+    queryFn: fetchPetList,
+  });
   const { breeds } = useBreedList(animal);
-
-  const fetchPets = async () => {
-    const res = await fetch(
-      `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
-    );
-
-    const data = await res.json();
-    return data.pets;
-  };
-
-  useEffect(() => {
-    (async () => {
-      const fetchedPets = await fetchPets();
-      setPets(fetchedPets);
-    })();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    setPets(await fetchPets());
-  };
 
   return (
     <section className="search-params">
       <section className="form">
         <PetForm
           animals={animals}
-          handleSubmit={handleSubmit}
+          // handleSubmit={handleSubmit}
           location={location}
           setLocation={setLocation}
           animal={animal}
@@ -51,7 +37,9 @@ function SearchParams() {
       </section>
 
       <section className="pets">
-        <PetList pets={pets} />
+        {isPending && <LoadingScreen />}
+        {isError && <ErrorScreen errorMessage={error.message} />}
+        {data && <PetList pets={data?.pets ?? []} />}
       </section>
     </section>
   );

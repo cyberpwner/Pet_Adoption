@@ -11,7 +11,7 @@ const fetchBreedList = async ({ queryKey }) => {
 
   if (!response.ok) {
     throw new Error(
-      `An error occured when trying to fetch breed list for ${animal}`
+      `An error occurred when trying to fetch breed list for ${animal}`
     );
   }
 

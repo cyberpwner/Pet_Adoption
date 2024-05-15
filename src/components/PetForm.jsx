@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 function PetForm({
   animals,
-  handleSubmit,
+  // handleSubmit,
   location,
   setLocation,
   animal,
@@ -12,7 +12,7 @@ function PetForm({
   breeds,
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label htmlFor="location">Location:</label>
       <input
         type="text"
@@ -67,7 +67,7 @@ function PetForm({
 
 PetForm.propTypes = {
   animals: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  // handleSubmit: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
   setLocation: PropTypes.func.isRequired,
   animal: PropTypes.string.isRequired,
