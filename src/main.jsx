@@ -13,12 +13,17 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import PetSearch from './pages/PetSearch';
 import RootLayout from './layouts/RootLayout';
 import PetDetails from './pages/PetDetails';
+import ErrorScreen from './components/ErrorScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<PetSearch />} />
-      <Route path="details/:id" element={<PetDetails />} />
+    <Route path="/" element={<RootLayout />} errorElement={<ErrorScreen />}>
+      <Route index element={<PetSearch />} errorElement={<ErrorScreen />} />
+      <Route
+        path="details/:id"
+        element={<PetDetails />}
+        errorElement={<ErrorScreen />}
+      />
     </Route>
   )
 );
