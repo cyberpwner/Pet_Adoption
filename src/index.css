@@ -165,17 +165,25 @@ header {
   width: 50%;
 }
 
-.carousel-smaller > img {
+.carousel-smaller > button.carousel__button--img {
+  display: inline-block;
   width: 100px;
   height: 100px;
+  padding: 0;
+  margin: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+}
+
+.carousel-smaller > .carousel__button--img img {
+  max-width: 100%;
   border-radius: 50%;
   display: inline-block;
-  margin: 15px;
-  cursor: pointer;
   border: 2px solid #333;
 }
 
-.carousel-smaller > img.active {
+.carousel-smaller > .carousel__button--img img.active {
   border-color: #333;
   opacity: 0.6;
 }

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import fetchPet from '../loaders/fetchPet';
 import LoadingScreen from '../components/LoadingScreen';
+import Carousel from '../components/Carousel';
 
 function PetDetails() {
   const { id } = useParams();
@@ -24,6 +25,7 @@ function PetDetails() {
 
   return (
     <section className="details">
+      <Carousel images={pet.images} />
       <section>
         <h1>{pet.name}</h1>
         <h2>

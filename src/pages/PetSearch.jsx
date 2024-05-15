@@ -29,14 +29,14 @@ function SearchParams() {
     const formData = new FormData(event.target);
 
     // convert it into a simple object
-    const inputData = {
+    const newSearchParams = {
       location: formData.get('location') ?? '',
       animal: formData.get('animal') ?? '',
       breed: formData.get('breed') ?? '',
     };
 
     // send it to state
-    setSearchParams(inputData);
+    setSearchParams(newSearchParams);
   };
 
   return (
