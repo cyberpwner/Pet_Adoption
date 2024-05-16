@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import fetchPet from '../loaders/fetchPet';
 import LoadingScreen from '../components/LoadingScreen';
 import Carousel from '../components/Carousel';
 import Modal from '../components/Modal';
+import useAdoptedPet from '../contexts/AdoptedPetContext/useAdoptedPet';
 
 function PetDetails() {
   const [showModal, setShowModal] = useState(false);
@@ -13,6 +14,8 @@ function PetDetails() {
     queryKey: ['petDetails', id],
     queryFn: fetchPet,
   });
+  const { setAdoptedPet } = useAdoptedPet();
+  const navigate = useNavigate();
 
   if (isPending) {
     return <LoadingScreen />;
@@ -48,7 +51,16 @@ function PetDetails() {
           <div>
             <h1>Would you like to adopt {pet.name}?</h1>
             <div>
-              <button type="button">Yes</button>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowModal(false);
+                  setAdoptedPet(pet);
+                  navigate('/', { replace: false });
+                }}
+              >
+                Yes
+              </button>
               <button type="button" onClick={() => setShowModal(false)}>
                 No
               </button>

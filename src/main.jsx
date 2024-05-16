@@ -14,6 +14,7 @@ import PetSearch from './pages/PetSearch';
 import RootLayout from './layouts/RootLayout';
 import PetDetails from './pages/PetDetails';
 import ErrorScreen from './components/ErrorScreen';
+import AdoptedPetProvider from './contexts/AdoptedPetContext/AdoptedPetProvider';
 
 const ERROR_MESSAGE = 'An error occurred';
 
@@ -50,8 +51,10 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <AdoptedPetProvider>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </AdoptedPetProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

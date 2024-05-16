@@ -6,6 +6,7 @@ import PetForm from '../components/PetForm';
 import fetchPetList from '../loaders/fetchPetList';
 import LoadingScreen from '../components/LoadingScreen';
 import ErrorScreen from '../components/ErrorScreen';
+import useAdoptedPet from '../contexts/AdoptedPetContext/useAdoptedPet';
 
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -21,6 +22,7 @@ function SearchParams() {
     queryFn: fetchPetList,
   });
   const { breeds } = useBreedList(animal);
+  const { adoptedPet } = useAdoptedPet();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ function SearchParams() {
           animal={animal}
           setAnimal={setAnimal}
           breeds={breeds ?? []}
+          adoptedPet={adoptedPet ?? null}
         />
       </section>
 
