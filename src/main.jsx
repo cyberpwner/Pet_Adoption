@@ -15,14 +15,24 @@ import RootLayout from './layouts/RootLayout';
 import PetDetails from './pages/PetDetails';
 import ErrorScreen from './components/ErrorScreen';
 
+const ERROR_MESSAGE = 'An error occurred';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} errorElement={<ErrorScreen />}>
-      <Route index element={<PetSearch />} errorElement={<ErrorScreen />} />
+    <Route
+      path="/"
+      element={<RootLayout />}
+      errorElement={<ErrorScreen errorMessage={ERROR_MESSAGE} />}
+    >
+      <Route
+        index
+        element={<PetSearch />}
+        errorElement={<ErrorScreen errorMessage={ERROR_MESSAGE} />}
+      />
       <Route
         path="details/:id"
         element={<PetDetails />}
-        errorElement={<ErrorScreen />}
+        errorElement={<ErrorScreen errorMessage={ERROR_MESSAGE} />}
       />
     </Route>
   )

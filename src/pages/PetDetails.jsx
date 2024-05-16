@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import fetchPet from '../loaders/fetchPet';
 import LoadingScreen from '../components/LoadingScreen';
 import Carousel from '../components/Carousel';
+import Modal from '../components/Modal';
 
 function PetDetails() {
+  const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
   const { isPending, isError, data, error } = useQuery({
     queryKey: ['petDetails', id],
@@ -23,6 +26,10 @@ function PetDetails() {
 
   const [pet] = data.pets;
 
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <section className="details">
       <Carousel images={pet.images} />
@@ -30,10 +37,25 @@ function PetDetails() {
         <h1>{pet.name}</h1>
         <h2>
           {pet.animal} - {pet.breed} - {`${pet.city}, ${pet.state}`}
-          <button type="button">Adopt {pet.name}</button>
+          <button onClick={handleClick} type="button">
+            Adopt {pet.name}
+          </button>
           <p>{pet.description}</p>
         </h2>
       </section>
+      {showModal && (
+        <Modal>
+          <div>
+            <h1>Would you like to adopt {pet.name}?</h1>
+            <div>
+              <button type="button">Yes</button>
+              <button type="button" onClick={() => setShowModal(false)}>
+                No
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 }
