@@ -3,7 +3,7 @@ import Pet from './Pet';
 
 function PetList({ pets }) {
   return (
-    <section className="search">
+    <section className="grid grid-cols-1 xl:grid-cols-2 gap-4 bg-lavender-blush/40 rounded-lg p-4">
       {!pets || !pets?.length ? (
         <h1>No pets found</h1>
       ) : (

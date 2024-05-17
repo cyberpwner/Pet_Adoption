@@ -72,7 +72,7 @@ function PetForm({
 
       <button
         type="submit"
-        className="bg-gunmetal hover:bg-chili-red transition-all text-white py-2 rounded tracking-wide font-semibold"
+        className="bg-gunmetal hover:bg-vista-blue transition-all text-white py-2 rounded tracking-wide font-semibold"
       >
         Filter
       </button>
