@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
   color: #333;
@@ -201,7 +205,7 @@ header {
   width: 325px;
 }
 
-.search-params button,
+.search-params form button,
 #modal button,
 #modal a,
 .details button {
@@ -222,15 +226,15 @@ header {
   text-decoration: none;
 }
 
-.search-params button:hover {
+.search-params form button:hover {
   background-color: #122622;
 }
 
-.search-params button:active {
+.search-params form button:active {
   background-color: #5f1d22;
 }
 
-.search-params button:focus {
+.search-params form button:focus {
   border: 1px solid cornflowerblue;
 }
 

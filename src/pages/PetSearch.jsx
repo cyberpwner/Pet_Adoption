@@ -7,6 +7,7 @@ import fetchPetList from '../loaders/fetchPetList';
 import LoadingScreen from '../components/LoadingScreen';
 import ErrorScreen from '../components/ErrorScreen';
 import useAdoptedPet from '../contexts/AdoptedPetContext/useAdoptedPet';
+import PaginationBar from '../components/PaginationBar';
 
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -17,8 +18,9 @@ function SearchParams() {
     breed: '',
   });
   const [animal, setAnimal] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ['petList', searchParams],
+    queryKey: ['petList', { searchParams, currentPage }],
     queryFn: fetchPetList,
   });
   const { breeds } = useBreedList(animal);
@@ -39,7 +41,13 @@ function SearchParams() {
 
     // send it to state
     setSearchParams(newSearchParams);
+    setCurrentPage(0);
   };
+
+  // if (data) {
+  //   console.log(data);
+  //   console.log(data.numberOfResults);
+  // }
 
   return (
     <section className="search-params">
@@ -54,10 +62,20 @@ function SearchParams() {
         />
       </section>
 
-      <section className="pets">
+      <section className="pets grid grid-cols-1 grid-rows-2 gap-4">
         {isPending && <LoadingScreen />}
         {isError && <ErrorScreen errorMessage={error.message} />}
         {data && <PetList pets={data?.pets ?? []} />}
+
+        {data && data?.numberOfResults && (
+          <section className="pagination-bar text-black">
+            <PaginationBar
+              numOfResults={data.numberOfResults}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </section>
+        )}
       </section>
     </section>
   );
