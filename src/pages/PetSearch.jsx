@@ -50,8 +50,8 @@ function SearchParams() {
   // }
 
   return (
-    <section className="search-params">
-      <section className="form">
+    <section className="search-params grid grid-cols-[auto,1fr] justify-center p-5 gap-5">
+      <section className="min-w-96">
         <PetForm
           animals={animals}
           handleSubmit={handleSubmit}
@@ -62,7 +62,7 @@ function SearchParams() {
         />
       </section>
 
-      <section className="pets grid grid-cols-1 grid-rows-2 gap-4">
+      {/* <section className="pets grid grid-cols-1 grid-rows-2 gap-4">
         {isPending && <LoadingScreen />}
         {isError && <ErrorScreen errorMessage={error.message} />}
         {data && <PetList pets={data?.pets ?? []} />}
@@ -76,7 +76,7 @@ function SearchParams() {
             />
           </section>
         )}
-      </section>
+      </section> */}
     </section>
   );
 }
