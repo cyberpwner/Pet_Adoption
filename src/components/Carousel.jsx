@@ -8,11 +8,14 @@ function Carousel({
   const [activeImg, setActiveImg] = useState(0);
 
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-10">
+    <section
+      className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-10 min-w-custom-400
+    "
+    >
       <img
         src={images[activeImg]}
         alt="animal"
-        className="max-w-96 rounded-2xl"
+        className="min-w-40 max-w-96 rounded-2xl"
       />
 
       <section className="grid grid-cols-2 gap-5 xl:grid-cols-4 items-start place-items-center mt-10">

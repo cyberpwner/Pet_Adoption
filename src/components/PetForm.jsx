@@ -14,8 +14,12 @@ function PetForm({
       className="bg-lavender-blush p-5 rounded-lg grid grid-cols-1 gap-5 tracking-wide"
     >
       {adoptedPet && (
-        <div className="pet image-container">
-          <img src={adoptedPet?.images[0]} alt={adoptedPet?.name} />
+        <div className="grid grid-cols-1 place-items-center">
+          <img
+            src={adoptedPet?.images[0]}
+            alt={adoptedPet?.name}
+            className="w-1/5 rounded-full"
+          />
         </div>
       )}
 
