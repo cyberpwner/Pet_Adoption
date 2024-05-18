@@ -18,7 +18,7 @@ function Carousel({
         className="xs:w-auto md:w-custom-400 rounded-2xl"
       />
 
-      <section className="grid gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 xl:grid-cols-4 place-items-center mt-10">
+      <section className="grid gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 place-items-center mt-10">
         {images?.map((pic, index) => (
           <button
             key={pic}
