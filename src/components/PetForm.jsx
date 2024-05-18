@@ -7,6 +7,8 @@ function PetForm({
   setAnimal,
   breeds,
   adoptedPet = null,
+  isBreedListPending,
+  isPetListPending,
 }) {
   return (
     <form
@@ -76,7 +78,8 @@ function PetForm({
 
       <button
         type="submit"
-        className="bg-gunmetal hover:bg-vista-blue transition-all text-white py-2 rounded tracking-wide font-semibold"
+        className="bg-gunmetal hover:bg-vista-blue transition-all text-white py-2 rounded tracking-wide font-semibold disabled:bg-gunmetal/80"
+        disabled={isBreedListPending || isPetListPending}
       >
         Filter
       </button>
@@ -90,6 +93,9 @@ PetForm.propTypes = {
   animal: PropTypes.string.isRequired,
   setAnimal: PropTypes.func.isRequired,
   breeds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isBreedListPending: PropTypes.bool.isRequired,
+  isPetListPending: PropTypes.bool.isRequired,
+
   // eslint-disable-next-line react/require-default-props
   adoptedPet: PropTypes.shape({
     id: PropTypes.number,

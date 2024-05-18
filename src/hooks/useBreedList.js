@@ -8,14 +8,14 @@ const useBreedList = (animal) => {
   });
 
   if (isPending) {
-    return { breeds: null, error: null };
+    return { isPending: true, breeds: null, error: null };
   }
 
   if (isError) {
-    return { breeds: null, error };
+    return { isPending: false, breeds: null, error };
   }
 
-  return { breeds: data.breeds, error: null };
+  return { isPending: false, breeds: data.breeds, error: null };
 };
 
 export default useBreedList;

@@ -23,7 +23,7 @@ function SearchParams() {
     queryKey: ['petList', { searchParams, currentPage }],
     queryFn: fetchPetList,
   });
-  const { breeds } = useBreedList(animal);
+  const { breeds, isPending: isBreedListPending } = useBreedList(animal);
   const { adoptedPet } = useAdoptedPet();
 
   const handleSubmit = (event) => {
@@ -54,6 +54,8 @@ function SearchParams() {
           setAnimal={setAnimal}
           breeds={breeds ?? []}
           adoptedPet={adoptedPet ?? null}
+          isBreedListPending={isBreedListPending}
+          isPetListPending={isPending}
         />
       </section>
 
