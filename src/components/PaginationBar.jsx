@@ -8,20 +8,20 @@ function PaginationBar({ numOfResults, currentPage, setCurrentPage }) {
     numOfPages += 1;
   }
 
-  // an array of numbers (0 tonumOfPages)
+  // an array of numbers (0 to numOfPages)
   const array = [...Array(numOfPages).keys()];
 
   return (
     <ul className="pagination-list">
       {array.map((num) => (
-        // eslint-disable-next-line react/no-array-index-key
         <button
           key={num}
           type="button"
           onClick={() => setCurrentPage(num)}
           className={classNames({
             'bg-gray-100 border border-black/25 py-2 px-4 m-1 rounded hover:bg-gray-200': true,
-            'bg-slate-400 border border-gray-200': num === currentPage,
+            'bg-true-blue text-white border border-gray-200':
+              num === currentPage,
           })}
         >
           <li>{num + 1}</li>

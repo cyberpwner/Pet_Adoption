@@ -57,9 +57,9 @@ function PetDetails() {
 
       {showModal && (
         <Modal>
-          <h1>Would you like to adopt {pet.name}?</h1>
+          <h3 className="text-xl mb-2">Would you like to adopt {pet.name}?</h3>
 
-          <div>
+          <section className="grid grid-cols-2 gap-2 place-items-center">
             <button
               type="button"
               onClick={() => {
@@ -67,13 +67,18 @@ function PetDetails() {
                 setAdoptedPet(pet);
                 navigate('/', { replace: false });
               }}
+              className="w-14 bg-true-blue/90 hover:bg-true-blue py-2 px-4 rounded text-white"
             >
               Yes
             </button>
-            <button type="button" onClick={() => setShowModal(false)}>
+            <button
+              type="button"
+              onClick={() => setShowModal(false)}
+              className="w-14 bg-true-blue/90 hover:bg-true-blue py-2 px-4 rounded text-white"
+            >
               No
             </button>
-          </div>
+          </section>
         </Modal>
       )}
     </section>

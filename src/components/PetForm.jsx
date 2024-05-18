@@ -18,7 +18,7 @@ function PetForm({
           <img
             src={adoptedPet?.images[0]}
             alt={adoptedPet?.name}
-            className="w-1/5 rounded-full"
+            className="w-32 rounded-full"
           />
         </div>
       )}
