@@ -12,6 +12,7 @@ export default {
         'chili-red': '#D64933',
         'vista-blue': '#7899D4',
         'lapis-lazuli': '#466995',
+        'true-blue': '#4464AD',
       },
     },
   },

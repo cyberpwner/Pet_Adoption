@@ -34,37 +34,45 @@ function PetDetails() {
   };
 
   return (
-    <section className="details">
+    <section className="w-9/12 my-16 mx-auto grid grid-cols-1 gap-10 bg-lavender-blush/80 p-10 rounded-md">
       <Carousel images={pet.images} />
-      <section>
-        <h1>{pet.name}</h1>
-        <h2>
-          {pet.animal} - {pet.breed} - {`${pet.city}, ${pet.state}`}
-          <button onClick={handleClick} type="button">
-            Adopt {pet.name}
-          </button>
-          <p>{pet.description}</p>
+
+      <section className="grid grid-cols-1 gap-2 place-items-center">
+        <h1 className="text-5xl">{pet.name}</h1>
+
+        <h2 className="text-lg">
+          {pet.breed} - {`${pet.city}, ${pet.state}`}
         </h2>
+
+        <p className="text-center">{pet.description}</p>
+
+        <button
+          onClick={handleClick}
+          type="button"
+          className="w-fit mt-3 bg-true-blue hover:bg-true-blue/90 transition-all px-4 py-3 rounded text-white"
+        >
+          Adopt {pet.name}
+        </button>
       </section>
+
       {showModal && (
         <Modal>
+          <h1>Would you like to adopt {pet.name}?</h1>
+
           <div>
-            <h1>Would you like to adopt {pet.name}?</h1>
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowModal(false);
-                  setAdoptedPet(pet);
-                  navigate('/', { replace: false });
-                }}
-              >
-                Yes
-              </button>
-              <button type="button" onClick={() => setShowModal(false)}>
-                No
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setShowModal(false);
+                setAdoptedPet(pet);
+                navigate('/', { replace: false });
+              }}
+            >
+              Yes
+            </button>
+            <button type="button" onClick={() => setShowModal(false)}>
+              No
+            </button>
           </div>
         </Modal>
       )}

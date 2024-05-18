@@ -8,20 +8,28 @@ function Carousel({
   const [activeImg, setActiveImg] = useState(0);
 
   return (
-    <section className="carousel">
-      <img src={images[activeImg]} alt="" />
-      <section className="carousel-smaller">
+    <section className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-10">
+      <img
+        src={images[activeImg]}
+        alt="animal"
+        className="max-w-96 rounded-2xl"
+      />
+
+      <section className="grid grid-cols-2 gap-5 xl:grid-cols-4 items-start place-items-center mt-10">
         {images?.map((pic, index) => (
           <button
             key={pic}
             onClick={() => setActiveImg(index)}
             type="button"
-            className="carousel__button--img"
+            className=""
           >
             <img
               src={pic}
               alt="animal pic"
-              className={classNames({ active: index === activeImg })}
+              className={classNames({
+                'max-w-24 rounded-full border border-gunmetal': true,
+                'opacity-60': index === activeImg,
+              })}
             />
           </button>
         ))}
