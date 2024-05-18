@@ -1,15 +1,23 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
-function ErrorScreen({ errorMessage = '' }) {
+function ErrorScreen({ errorMessage = 'An error has occurred.' }) {
   const { pathname } = useLocation();
 
   return (
-    <section className="error-screen">
-      <h2>OOPS!</h2>
-      <p>{errorMessage}</p>
+    <section className="grid grid-cols-1 place-items-center mt-14 p-5">
+      <h2 className="text-9xl tracking-wide">OOPS!</h2>
+      <p className="text-2xl text-center">{errorMessage}</p>
+
       {/* only show the homepage link if the user is on a different page */}
-      {pathname !== '/' && <Link to="/">Back to the homepage</Link>}
+      {pathname !== '/' && (
+        <Link
+          to="/"
+          className="bg-true-blue py-3 px-4 rounded text-white mt-5 border border-transparent hover:bg-white hover:border-true-blue hover:text-true-blue transition-all"
+        >
+          Back to the homepage
+        </Link>
+      )}
     </section>
   );
 }

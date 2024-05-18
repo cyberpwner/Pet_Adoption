@@ -16,7 +16,7 @@ import PetDetails from './pages/PetDetails';
 import ErrorScreen from './components/ErrorScreen';
 import AdoptedPetProvider from './contexts/AdoptedPetContext/AdoptedPetProvider';
 
-const ERROR_MESSAGE = 'An error occurred';
+const ERROR_MESSAGE = 'An error has occurred';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

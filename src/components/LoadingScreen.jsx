@@ -1,7 +1,9 @@
+import spinner from '../assets/imgs/spinner.gif';
+
 function LoadingScreen() {
   return (
-    <section className="loading-pane">
-      <h2 className="loader">⏳</h2>
+    <section className="grid grid-cols-1 place-items-center mt-20">
+      <img src={spinner} alt="loading" className="w-32" />
     </section>
   );
 }
