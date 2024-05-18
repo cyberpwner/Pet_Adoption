@@ -34,7 +34,7 @@ function PetDetails() {
   };
 
   return (
-    <section className="min-w-custom-500 w-9/12 my-16 mx-auto grid grid-cols-1 gap-10 bg-lavender-blush/80 p-10 rounded-md">
+    <section className="w-9/12 my-16 mx-auto grid grid-cols-1 gap-10 bg-lavender-blush/80 p-10 rounded-md">
       <Carousel images={pet.images} />
 
       <section className="grid grid-cols-1 gap-2 place-items-center">

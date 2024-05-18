@@ -9,16 +9,16 @@ function Carousel({
 
   return (
     <section
-      className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-10 min-w-custom-400
+      className="grid grid-cols-1 lg:grid-cols-[auto,1fr] gap-10
     "
     >
       <img
         src={images[activeImg]}
         alt="animal"
-        className="min-w-40 max-w-96 rounded-2xl"
+        className="xs:w-auto rounded-2xl"
       />
 
-      <section className="grid grid-cols-2 gap-5 xl:grid-cols-4 items-start place-items-center mt-10">
+      <section className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center mt-10">
         {images?.map((pic, index) => (
           <button
             key={pic}

@@ -44,10 +44,6 @@ function SearchParams() {
     setCurrentPage(0);
   };
 
-  if (data) {
-    console.log(data);
-  }
-
   return (
     <section className="search-params grid grid-cols-1 lg:grid-cols-[auto,1fr] justify-center p-5 gap-5">
       <section className="min-w-96">
