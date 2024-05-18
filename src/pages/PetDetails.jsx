@@ -57,7 +57,9 @@ function PetDetails() {
 
       {showModal && (
         <Modal>
-          <h3 className="text-xl mb-2">Would you like to adopt {pet.name}?</h3>
+          <h3 className="text-xl mb-2 text-center">
+            Would you like to adopt {pet.name}?
+          </h3>
 
           <section className="grid grid-cols-2 gap-2 place-items-center">
             <button
