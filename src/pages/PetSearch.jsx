@@ -44,10 +44,9 @@ function SearchParams() {
     setCurrentPage(0);
   };
 
-  // if (data) {
-  //   console.log(data);
-  //   console.log(data.numberOfResults);
-  // }
+  if (data) {
+    console.log(data);
+  }
 
   return (
     <section className="search-params grid grid-cols-1 lg:grid-cols-[auto,1fr] justify-center p-5 gap-5">
@@ -67,7 +66,7 @@ function SearchParams() {
         {isError && <ErrorScreen errorMessage={error.message} />}
         {data && <PetList pets={data?.pets ?? []} />}
 
-        {data && data?.numberOfResults && (
+        {data && data.numberOfResults > 0 && (
           <section className="pagination-bar text-black">
             <PaginationBar
               numOfResults={data.numberOfResults}

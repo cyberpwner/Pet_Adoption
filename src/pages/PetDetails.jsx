@@ -65,7 +65,7 @@ function PetDetails() {
               onClick={() => {
                 setShowModal(false);
                 setAdoptedPet(pet);
-                navigate('/', { replace: false });
+                navigate('/Pet_Adoption/', { replace: false });
               }}
               className="w-14 bg-true-blue/90 hover:bg-true-blue py-2 px-4 rounded text-white"
             >

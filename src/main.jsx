@@ -21,7 +21,7 @@ const ERROR_MESSAGE = 'An error has occurred';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/"
+      path="/Pet_Adoption"
       element={<RootLayout />}
       errorElement={<ErrorScreen errorMessage={ERROR_MESSAGE} />}
     >

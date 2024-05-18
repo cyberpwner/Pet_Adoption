@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 function PaginationBar({ numOfResults, currentPage, setCurrentPage }) {
   let numOfPages = Math.floor(numOfResults / 10);
 
+  if (!numOfResults) {
+    return null;
+  }
+
   if (numOfResults % 10 !== 0) {
     numOfPages += 1;
   }

@@ -10,7 +10,7 @@ function Pet({ id, name, breed, images, location }) {
 
   return (
     <Link
-      to={`/details/${id}`}
+      to={`details/${id}`}
       className="pet grid grid-cols-[auto,1fr] items-center gap-5 border-b border-b-gunmetal/50 p-4 tracking-wide hover:pl-8 transition-all"
     >
       <section className="grid grid-cols-1 gap-2 place-items-center">
