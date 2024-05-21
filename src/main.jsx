@@ -16,6 +16,7 @@ import PetDetails from './pages/PetDetails';
 import ErrorScreen from './components/ErrorScreen';
 import AdoptedPetProvider from './contexts/AdoptedPetContext/AdoptedPetProvider';
 import ThemeProvider from './contexts/ThemeContext/ThemeProvider';
+import NotFound from './pages/NotFound';
 
 const ERROR_MESSAGE = 'An error has occurred';
 
@@ -36,6 +37,8 @@ const router = createBrowserRouter(
         element={<PetDetails />}
         errorElement={<ErrorScreen errorMessage={ERROR_MESSAGE} />}
       />
+
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

@@ -10,6 +10,7 @@ function Header() {
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
+    localStorage.setItem('darkmode', !isDarkMode);
   };
 
   return (

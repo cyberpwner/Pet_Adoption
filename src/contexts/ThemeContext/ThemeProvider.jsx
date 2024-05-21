@@ -2,9 +2,26 @@ import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import ThemeContext from './ThemeContext';
 
+function getLocalIsDarkMode() {
+  const localValue = localStorage.getItem('darkmode');
+
+  if (localValue === 'true') {
+    return true;
+  }
+
+  if (localValue === 'false') {
+    return false;
+  }
+
+  return undefined;
+}
+
 function ThemeProvider({ children }) {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const [isDarkMode, setIsDarkMode] = useState(mediaQuery.matches);
+
+  const [isDarkMode, setIsDarkMode] = useState(
+    getLocalIsDarkMode() ?? mediaQuery.matches
+  );
 
   const memoizedState = useMemo(
     () => ({ isDarkMode, setIsDarkMode }),
