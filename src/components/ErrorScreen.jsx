@@ -12,8 +12,8 @@ function ErrorScreen({ errorMessage = 'An error has occurred.' }) {
       {/* only show the homepage link if the user is on a different page */}
       {pathname !== '/' && (
         <Link
-          to="/"
-          className="bg-true-blue py-3 px-4 rounded text-white mt-5 border border-transparent hover:bg-white hover:border-true-blue hover:text-true-blue transition-all"
+          to="/Pet_Adoption/"
+          className="bg-true-blue py-3 px-4 rounded text-white mt-5 border-2 border-transparent hover:bg-white hover:border-true-blue hover:text-true-blue transition-all"
         >
           Back to the homepage
         </Link>

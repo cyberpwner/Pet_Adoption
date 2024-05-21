@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import classNames from 'classnames';
 import useBreedList from '../hooks/useBreedList';
 import PetList from '../components/PetList';
 import PetForm from '../components/PetForm';
@@ -8,6 +9,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import ErrorScreen from '../components/ErrorScreen';
 import useAdoptedPet from '../contexts/AdoptedPetContext/useAdoptedPet';
 import PaginationBar from '../components/PaginationBar';
+import useTheme from '../contexts/ThemeContext/useTheme';
 
 const animals = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
@@ -25,6 +27,7 @@ function SearchParams() {
   });
   const { breeds, isPending: isBreedListPending } = useBreedList(animal);
   const { adoptedPet } = useAdoptedPet();
+  const { isDarkMode } = useTheme();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,7 +48,14 @@ function SearchParams() {
   };
 
   return (
-    <section className="search-params grid grid-cols-1 lg:grid-cols-[auto,1fr] justify-center p-5 gap-5">
+    <section
+      className={classNames(
+        'search-params grid grid-cols-1 lg:grid-cols-[auto,1fr] justify-center p-5 gap-5',
+        {
+          'bg-slate-400': isDarkMode,
+        }
+      )}
+    >
       <section className="min-w-96">
         <PetForm
           animals={animals}

@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 function PaginationBar({ numOfResults, currentPage, setCurrentPage }) {
-  let numOfPages = Math.floor(numOfResults / 10);
-
   if (!numOfResults) {
     return null;
   }
+
+  let numOfPages = Math.floor(numOfResults / 10);
 
   if (numOfResults % 10 !== 0) {
     numOfPages += 1;
@@ -24,7 +24,7 @@ function PaginationBar({ numOfResults, currentPage, setCurrentPage }) {
           onClick={() => setCurrentPage(num)}
           className={classNames({
             'bg-gray-100 border border-black/25 py-2 px-4 m-1 rounded hover:bg-gray-200': true,
-            'bg-true-blue text-white border border-gray-200':
+            'bg-true-blue hover:bg-true-blue/90 text-white border border-gray-200':
               num === currentPage,
           })}
         >

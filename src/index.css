@@ -13,3 +13,7 @@
 body {
   font-family: 'lt-sonoma', sans-serif;
 }
+
+.search-params {
+  min-height: calc(100vh - 209px);
+}

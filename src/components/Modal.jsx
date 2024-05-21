@@ -1,8 +1,11 @@
+import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import useTheme from '../contexts/ThemeContext/useTheme';
 
 function Modal({ children }) {
   const ref = useRef(null);
+  const { isDarkMode } = useTheme();
 
   if (!ref?.current) {
     ref.current = document.createElement('div');
@@ -19,7 +22,15 @@ function Modal({ children }) {
   }, []);
 
   return createPortal(
-    <section className="bg-lavender-blush p-10 rounded-xl grid grid-cols-1 place-items-center">
+    <section
+      className={classNames(
+        'p-10 rounded-xl grid grid-cols-1 place-items-center',
+        {
+          'bg-lavender-blush': !isDarkMode,
+          'bg-gunmetal text-white': isDarkMode,
+        }
+      )}
+    >
       {children}
     </section>,
     ref?.current

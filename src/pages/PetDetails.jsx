@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import classNames from 'classnames';
 import fetchPet from '../loaders/fetchPet';
 import LoadingScreen from '../components/LoadingScreen';
 import Carousel from '../components/Carousel';
 import Modal from '../components/Modal';
 import useAdoptedPet from '../contexts/AdoptedPetContext/useAdoptedPet';
+import useTheme from '../contexts/ThemeContext/useTheme';
 
 function PetDetails() {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +18,7 @@ function PetDetails() {
   });
   const { setAdoptedPet } = useAdoptedPet();
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme();
 
   if (isPending) {
     return <LoadingScreen />;
@@ -34,7 +37,15 @@ function PetDetails() {
   };
 
   return (
-    <section className="w-9/12 my-16 mx-auto grid grid-cols-1 gap-10 bg-lavender-blush/80 p-10 rounded-md">
+    <section
+      className={classNames(
+        'w-9/12 my-16 mx-auto grid grid-cols-1 gap-10 p-10 rounded-md',
+        {
+          'bg-lavender-blush/80': !isDarkMode,
+          'bg-gunmetal text-white': isDarkMode,
+        }
+      )}
+    >
       <Carousel images={pet.images} />
 
       <section className="grid grid-cols-1 gap-2 place-items-center">

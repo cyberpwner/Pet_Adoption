@@ -1,4 +1,6 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import useTheme from '../contexts/ThemeContext/useTheme';
 
 function PetForm({
   animals,
@@ -10,10 +12,18 @@ function PetForm({
   isBreedListPending,
   isPetListPending,
 }) {
+  const { isDarkMode } = useTheme();
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-lavender-blush p-5 rounded-lg grid grid-cols-1 gap-5 tracking-wide"
+      className={classNames(
+        'p-5 rounded-lg grid grid-cols-1 gap-5 tracking-wide',
+        {
+          'bg-gunmetal': isDarkMode,
+          'bg-lavender-blush': !isDarkMode,
+        }
+      )}
     >
       {adoptedPet && (
         <div className="grid grid-cols-1 place-items-center">
@@ -26,18 +36,30 @@ function PetForm({
       )}
 
       <div className="grid grid-col-1">
-        <label htmlFor="location">Location:</label>
+        <label
+          htmlFor="location"
+          className={classNames({ 'text-white': isDarkMode })}
+        >
+          Location:
+        </label>
         <input
           type="text"
           name="location"
           id="location"
           placeholder="Location"
-          className="p-2 rounded bg-white outline-none border focus:border-black"
+          className={classNames(
+            'p-2 rounded bg-white outline-none border focus:border-black'
+          )}
         />
       </div>
 
       <div className="grid grid-col-1">
-        <label htmlFor="animal">Animal:</label>
+        <label
+          htmlFor="animal"
+          className={classNames({ 'text-white': isDarkMode })}
+        >
+          Animal:
+        </label>
         <select
           name="animal"
           id="animal"
@@ -58,7 +80,12 @@ function PetForm({
       </div>
 
       <div className="grid grid-col-1">
-        <label htmlFor="breed">Breed:</label>
+        <label
+          htmlFor="breed"
+          className={classNames({ 'text-white': isDarkMode })}
+        >
+          Breed:
+        </label>
         <select
           name="breed"
           id="breed"
@@ -78,7 +105,12 @@ function PetForm({
 
       <button
         type="submit"
-        className="bg-gunmetal hover:bg-vista-blue transition-all text-white py-2 rounded tracking-wide font-semibold disabled:bg-gunmetal/80"
+        className={classNames(
+          'bg-gunmetal hover:bg-vista-blue transition-all text-white py-2 rounded tracking-wide font-semibold disabled:bg-gunmetal/80 border-2 border-transparent',
+          {
+            'bg-true-blue': isDarkMode,
+          }
+        )}
         disabled={isBreedListPending || isPetListPending}
       >
         Filter
