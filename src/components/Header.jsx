@@ -4,6 +4,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import darklogo from '../assets/imgs/darklogo_compressed.png';
 import lightlogo from '../assets/imgs/lightlogo_compressed.png';
 import useTheme from '../contexts/ThemeContext/useTheme';
+import Breadcrumbs from './Breadcrumbs';
 
 function Header() {
   const { isDarkMode, setIsDarkMode } = useTheme();
@@ -16,7 +17,7 @@ function Header() {
   return (
     <header
       className={classNames({
-        ' p-4 grid grid-cols-1 place-items-center': true,
+        'relative p-4 grid grid-cols-1 place-items-center': true,
         'bg-gunmetal': isDarkMode,
         'bg-lavender-blush': !isDarkMode,
       })}
@@ -28,6 +29,8 @@ function Header() {
           className="max-w-44"
         />
       </Link>
+
+      <Breadcrumbs />
 
       <button
         type="button"

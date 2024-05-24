@@ -17,3 +17,10 @@ body {
 .search-params {
   min-height: calc(100vh - 209px);
 }
+
+.breadcrumbs {
+  & li:not(:last-child)::after {
+    content: '>';
+    margin-left: 12px;
+  }
+}
