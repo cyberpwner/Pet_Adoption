@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import AdpotedPetContext from './AdoptedPetContext';
+import AdoptedPetContext from './AdoptedPetContext';
 
 const useAdoptedPet = () => {
-  return useContext(AdpotedPetContext);
+  return useContext(AdoptedPetContext);
 };
 
 export default useAdoptedPet;

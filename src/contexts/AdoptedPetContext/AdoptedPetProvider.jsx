@@ -10,7 +10,7 @@ function AdoptedPetProvider({ children }) {
       adoptedPet,
       setAdoptedPet,
     };
-  }, [adoptedPet, setAdoptedPet]);
+  }, [adoptedPet]);
 
   return (
     <AdoptedPetContext.Provider value={memoizedState}>
